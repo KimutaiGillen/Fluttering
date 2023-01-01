@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Answer extends StatelessWidget {
   final VoidCallback selectHandler;
-  Answer(this.selectHandler, {super.key});
+  String answer;
+  Answer(this.selectHandler, this.answer, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.all(3),
-      child: ElevatedButton(onPressed: selectHandler, child: Text("answers")),
+      margin: const EdgeInsets.all(3),
+      child: ElevatedButton(onPressed: selectHandler, child: Text(answer)),
     );
   }
 }

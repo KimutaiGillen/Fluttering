@@ -33,21 +33,34 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'Who is the president of USA currently?',
-      'Who is the king of Britain at the moment?',
-      'Who is the previous president of Kenya?',
-      'Who is the previous president of Kenyan?'
+      {
+        'questionText': 'What\'s your favorite color?',
+        'answers': ['blue', 'red', 'green', 'yellow'],
+      },
+      {
+        'questionText': 'Who\'s your favorite footballer/singer',
+        'answers': ['Messi', 'Ronaldo' 'Neymar', 'Beyonce'],
+      },
+      {
+        'questionText': 'What\'s your worst color?',
+        'answers': ['blue', 'red', 'green'],
+      },
+      {
+        'questionText': 'Who\'s your least favorite footballer/singer',
+        'answers': ['Messi', 'Ronaldo' 'Neymar', 'Beyonce'],
+      },
     ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text("my questions' app")),
         body: Column(
           children: [
-            Question(questions[questionIndex]),
-            Answer(answerQuestion),
-            Answer(answerQuestions),
-            Answer(answerQuestion),
-            Answer(answerQuestion),
+            Question(
+              questions[questionIndex]['questionText'] as String,
+            ),
+            ...(questions[questionIndex]['answers'] as List<String>)
+                .map((answer) => Answer(answerQuestion, answer))
+                .toList()
           ],
         ),
       ),
