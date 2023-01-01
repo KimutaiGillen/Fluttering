@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:udemy_basics/questions.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,16 +25,17 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'who is the president of USA currently?',
-      'who is the king of Britain at the moment?',
-      'who is the previous president of Kenya?'
+      'Who is the president of USA currently?',
+      'Who is the king of Britain at the moment?',
+      'Who is the previous president of Kenya?',
+      'Who is the previous president of Kenyan?'
     ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text("my questions' app")),
         body: Column(
           children: [
-            Text(questions[questionIndex]),
+            Question(questions[questionIndex]),
             ElevatedButton(
                 onPressed: answerQuestion, child: const Text("answer 1")),
             ElevatedButton(
