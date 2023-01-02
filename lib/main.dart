@@ -30,6 +30,13 @@ class MyAppState extends State<MyApp> {
     });
   }
 
+  mapExample() {
+    final names = ['Max', 'Manu', 'Julie'];
+    final result = names.map((name) => Text(name)).toList();
+
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     var questions = [
@@ -53,16 +60,20 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text("my questions' app")),
-        body: Column(
-          children: [
-            Question(
-              questions[questionIndex]['questionText'] as String,
-            ),
-            ...(questions[questionIndex]['answers'] as List<String>)
-                .map((answer) => Answer(answerQuestion, answer))
-                .toList()
-          ],
-        ),
+        body: questionIndex < questions.length
+            ? Column(
+                children: [
+                  Question(
+                    questions[questionIndex]['questionText'] as String,
+                  ),
+                  ...(questions[questionIndex]['answers'] as List<String>)
+                      .map((answer) => Answer(answerQuestion, answer))
+                      .toList(),
+                ],
+              )
+            : const Center(
+                child: Text(
+                    "you have made it to the end of the question!! Congrats, expect results soon!")),
       ),
     );
   }
