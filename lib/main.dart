@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:udemy_basics/answer.dart';
-import 'package:udemy_basics/questions.dart';
+import 'package:udemy_basics/quiz.dart';
+import 'package:udemy_basics/result.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,19 +22,6 @@ class MyAppState extends State<MyApp> {
     setState(() {
       questionIndex += 1;
     });
-  }
-
-  void answerQuestions() {
-    setState(() {
-      questionIndex += 2;
-    });
-  }
-
-  mapExample() {
-    final names = ['Max', 'Manu', 'Julie'];
-    final result = names.map((name) => Text(name)).toList();
-
-    return result;
   }
 
   @override
@@ -59,22 +46,14 @@ class MyAppState extends State<MyApp> {
     ];
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text("my questions' app")),
-        body: questionIndex < questions.length
-            ? Column(
-                children: [
-                  Question(
-                    questions[questionIndex]['questionText'] as String,
-                  ),
-                  ...(questions[questionIndex]['answers'] as List<String>)
-                      .map((answer) => Answer(answerQuestion, answer))
-                      .toList(),
-                ],
-              )
-            : const Center(
-                child: Text(
-                    "you have made it to the end of the question!! Congrats, expect results soon!")),
-      ),
+          appBar: AppBar(title: const Text("my questions' app")),
+          body: questionIndex < questions.length
+              ? Quiz(
+                  answerQuestion: answerQuestion,
+                  questionIndex: questionIndex,
+                  questions: questions,
+                )
+              : const Result()),
     );
   }
 }
